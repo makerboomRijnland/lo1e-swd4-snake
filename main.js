@@ -30,4 +30,17 @@ function update(){
     drawSnake();
 }
 
-setInterval(update, 1000);
+function changeDirection(event){
+     if(event.code == 'ArrowUp'){
+         direction = 'up';
+     } else if(event.code == 'ArrowDown'){
+        direction = 'down';
+     } else if(event.code == 'ArrowRight'){
+        direction = 'right';
+     } else if(event.code == 'ArrowLeft'){
+        direction = 'left';
+     }
+}
+
+setInterval(update, 250);
+addEventListener('keydown', changeDirection);
