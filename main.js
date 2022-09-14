@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 let snakeX = 200;
 let snakeY = 200;
-let direction = 'up';
+let direction = null;
 
 function drawBackground(){
 ctx.fillStyle = "black";
