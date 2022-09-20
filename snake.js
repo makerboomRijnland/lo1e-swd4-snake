@@ -23,28 +23,28 @@ function update() {
         if (snakeX < 380) {
             snakeX += 20;
         } else {
-            alert("Game Over");
+            gameOver();
         }
 
     } else if (direction == "left") {
         if (snakeX > 0) {
             snakeX -= 20;
         } else {
-            alert("Game Over");
+            gameOver();
         }
 
     } else if (direction == "up") {
         if (snakeY > 0) {
             snakeY -= 20;
         } else {
-            alert("Game Over");
+            gameOver();
         }
-        
+
     } else if (direction == "down") {
         if (snakeY < 380) {
             snakeY += 20;
         } else {
-            alert("Game Over");
+            gameOver();
         }
     }
 
@@ -62,6 +62,11 @@ function changeDirection(event) {
     } else if (event.code == "ArrowDown") {
         direction = "down";
     }
+}
+
+function gameOver() {
+    direction = null;
+    alert("Game Over!");
 }
 
 drawBackground();
