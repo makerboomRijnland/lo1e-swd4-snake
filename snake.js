@@ -20,13 +20,32 @@ function drawSnake() {
 
 function update() {
     if (direction == "right") {
-        snakeX += 20;
+        if (snakeX < 380) {
+            snakeX += 20;
+        } else {
+            alert("Game Over");
+        }
+
     } else if (direction == "left") {
-        snakeX -= 20;
+        if (snakeX > 0) {
+            snakeX -= 20;
+        } else {
+            alert("Game Over");
+        }
+
     } else if (direction == "up") {
-        snakeY -= 20;
+        if (snakeY > 0) {
+            snakeY -= 20;
+        } else {
+            alert("Game Over");
+        }
+        
     } else if (direction == "down") {
-        snakeY += 20;
+        if (snakeY < 380) {
+            snakeY += 20;
+        } else {
+            alert("Game Over");
+        }
     }
 
     drawBackground();
@@ -47,5 +66,5 @@ function changeDirection(event) {
 
 drawBackground();
 drawSnake();
-setInterval(update, 1000);
+setInterval(update, 500);
 addEventListener("keydown", changeDirection);
