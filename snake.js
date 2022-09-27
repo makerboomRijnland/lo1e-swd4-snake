@@ -3,6 +3,16 @@ let context = canvas.getContext("2d");
 
 let snakeX = 200;
 let snakeY = 200;
+let snake = [
+    {
+        x: 200,
+        y: 200
+    },
+    {
+        x: 220,
+        y: 200
+    }
+];
 
 let foodX;
 let foodY;
@@ -18,37 +28,66 @@ function drawBackground() {
 // Draw the snake
 function drawSnake() {
     context.fillStyle = "white";
-    context.fillRect(snakeX, snakeY, 20, 20);
+
+    for (let index = 0; index < snake.length; index++) {
+        context.fillRect(snake[index].x, snake[index].y, 20, 20);
+    }
 }
 
 function update() {
+
+    let tailIndex = snake.length - 1;
+    let tailX = snake[tailIndex].x;
+    let tailY = snake[tailIndex].y;
+
+    if(direction != null) {
+        for(let index = snake.length - 1; index > 0; index--) {
+            snake[index].x = snake[index - 1].x;
+            snake[index].y = snake[index - 1].y;
+        }
+    }
+
     if (direction == "right") {
-        if (snakeX < 380) {
-            snakeX += 20;
+        if (snake[0].x < 380) {
+            snake[0].x += 20;
         } else {
             gameOver();
         }
 
     } else if (direction == "left") {
-        if (snakeX > 0) {
-            snakeX -= 20;
+        if (snake[0].x > 0) {
+            snake[0].x -= 20;
         } else {
             gameOver();
         }
 
     } else if (direction == "up") {
-        if (snakeY > 0) {
-            snakeY -= 20;
+        if (snake[0].y > 0) {
+            snake[0].y -= 20;
         } else {
             gameOver();
         }
 
     } else if (direction == "down") {
-        if (snakeY < 380) {
-            snakeY += 20;
+        if (snake[0].y < 380) {
+            snake[0].y += 20;
         } else {
             gameOver();
         }
+    }
+
+    // Appel eten als positie snake en food zelfde zijn.
+    if (foodX == snake[0].x && foodY == snake[0].y) {
+        // Score ophogen
+        // Groeien
+        alert('Hap!');
+
+        snake.push({
+            x: tailX,
+            y: tailY
+        });
+
+        spawnFood();
     }
 
     drawBackground();
@@ -73,11 +112,13 @@ function gameOver() {
     alert("Game Over!");
 }
 
+// Geeft de appel een nieuwe plek.
 function spawnFood() {
     foodX = Math.floor(Math.random() * 20) * 20;
     foodY = Math.floor(Math.random() * 20) * 20;
 }
 
+// Tekent de appel
 function drawFood() {
     context.fillStyle = "red";
     context.fillRect(foodX, foodY, 20, 20);
