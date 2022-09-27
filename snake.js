@@ -80,7 +80,6 @@ function update() {
     if (foodX == snake[0].x && foodY == snake[0].y) {
         // Score ophogen
         // Groeien
-        alert('Hap!');
 
         snake.push({
             x: tailX,
