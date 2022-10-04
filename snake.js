@@ -102,13 +102,19 @@ function changeDirection(event) {
         }
     } else if (event.code == "ArrowRight") {
         // Als direction niet left is
-        direction = "right";
+        if (direction != 'left') {
+            direction = "right";
+        }
     } else if (event.code == "ArrowLeft") {
         // Als direction niet right is
+        if (direction != 'right') {
         direction = "left";
+        }
     } else if (event.code == "ArrowDown") {
         // Als direction niet up is
-        direction = "down";
+        if (direction != 'up') {
+            direction = "down";
+        }
     }
 }
 
