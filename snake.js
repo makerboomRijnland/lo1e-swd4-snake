@@ -96,12 +96,18 @@ function update() {
 
 function changeDirection(event) {
     if (event.code == "ArrowUp") {
-        direction = "up";
+        // Als direction niet down is
+        if (direction != 'down') {
+            direction = "up";
+        }
     } else if (event.code == "ArrowRight") {
+        // Als direction niet left is
         direction = "right";
     } else if (event.code == "ArrowLeft") {
+        // Als direction niet right is
         direction = "left";
     } else if (event.code == "ArrowDown") {
+        // Als direction niet up is
         direction = "down";
     }
 }
